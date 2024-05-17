@@ -11,14 +11,15 @@ OBJ 	:=	$(patsubst $(SRC_DIR)/%.c, $(BUILD)/%.o, $(SRC))
 DEPS 	:=	$(OBJ:.o=.d)
 
 CC		:=	cc
-CFLAGS	:=	-MMD -MP -Iinclude -I$(LIBDIR)/libft/include
+CFLAGS	:=	-Wall -Werror -Wextra -MMD -MP -Iinclude -I$(LIBDIR)/libft/include
 
 all: create_dirs $(NAME)
+	@printf "$(DEPS)"
 
 create_dirs: $(BUILD)
 
 $(BUILD):
-	@if [ ! -d "$(BUILD)" ]; then mkdir $(BUILD); fi
+	@if [ ! -d $(BUILD) ]; then mkdir $(BUILD); fi
 
 $(NAME): $(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
@@ -31,11 +32,11 @@ $(LIBFT):
 	@$(MAKE) --no-print-directory -C  $(LIBDIR)/libft
 
 clean:
-	@if [ -d "$(BUILD)" ]; then $(RM) -rf $(BUILD) && echo "\033[1;31m\tDeleted: $(NAME) $(BUILD)\033[0m"; fi
+	@if [ -d $(BUILD) ]; then $(RM) -rf $(BUILD) && echo "\033[1;31m\tDeleted: $(NAME) $(BUILD)\033[0m"; fi
 	@$(MAKE) --no-print-directory clean -C $(LIBDIR)/libft
 
 fclean: clean
-	@if [ -f "$(NAME)" ]; then $(RM) -rf $(NAME) && echo "\033[1;31m\tDeleted: $(NAME)\033[0m"; fi
+	@if [ -f $(NAME) ]; then $(RM) -rf $(NAME) && echo "\033[1;31m\tDeleted: $(NAME)\033[0m"; fi
 	@$(MAKE) --no-print-directory fclean -C $(LIBDIR)/libft
 
 re: fclean all
