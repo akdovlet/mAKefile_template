@@ -104,7 +104,7 @@ Extra tips:
 
 ```make -j```: Will allow Make to use all of your cpu's threads. Very fast compilation.
 
-```make -n```: A dry run of ```make```, will show you exactly what the next ``make``` call will do. Useful for knowing if you makefile relinks or not.
+```make -n```: A dry run of ```make```, will show you exactly what the next ```make``` call will do. Useful for knowing if you makefile relinks or not.
 
 ```make -k```: Tells Make to go as far as possible, usually Make stops at the first error.
 
