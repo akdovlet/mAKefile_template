@@ -14,9 +14,8 @@ CC		:=	cc
 CFLAGS	:=	-Wall -Werror -Wextra -MMD -MP -Iinclude -I$(LIBDIR)/libft/include
 
 all: create_dirs $(NAME)
-	@printf "$(DEPS)"
 
-create_dirs: $(BUILD)
+create_dirs: | $(BUILD)
 
 $(BUILD):
 	@if [ ! -d $(BUILD) ]; then mkdir $(BUILD); fi
